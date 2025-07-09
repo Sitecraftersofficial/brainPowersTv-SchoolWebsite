@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Road Law Learning - Rwanda</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .gradient-bg {
+      background: linear-gradient(135deg, #E3F2FD 0%, #FFFFFF 100%);
+    }
+
+    .sunny-btn {
+      background-color: #03A9F4;
+      color: #fff;
+    }
+
+    .sunny-btn:hover {
+      background-color: #0288D1;
+    }
+
+    .pricing-box {
+      background-color: #ffffff;
+      border: 1px solid #cce7ff;
+    }
+  </style>
+</head>
+
+<body class="bg-white text-gray-800">
+  <script>
+    const validCodes = ["RWROAD2025", "STUDENT123", "PAPA456"];
+    const storedCode = localStorage.getItem("accessCode");
+
+    function isValidCode(code) {
+      return validCodes.includes(code);
+    }
+
+    function checkAccess() {
+      const restrictedSections = document.querySelectorAll('.restricted');
+      if (storedCode && isValidCode(storedCode)) {
+        restrictedSections.forEach(section => section.style.display = 'block');
+      } else {
+        restrictedSections.forEach(section => section.style.display = 'none');
+        const userCode = prompt("Enter your personal access code to use this website:");
+        if (isValidCode(userCode)) {
+          localStorage.setItem("accessCode", userCode);
+          alert("Access granted! Reloading...");
+          location.reload();
+        }
+      }
+    }
+
+    window.onload = checkAccess;
+  </script>
+
+  <!-- Navigation -->
+  <nav class="gradient-bg border-b border-blue-200 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-blue-700">Ishuri ry'Amategeko y'Umuhanda</h1>
+      <ul class="hidden md:flex space-x-6 text-blue-800 font-medium">
+        <li><a href="#pricing" class="hover:underline">Pricing</a></li>
+        <li><a href="#courses" class="hover:underline">Courses</a></li>
+        <li><a href="#account" class="hover:underline">Account</a></li>
+        <li><a href="#contact" class="hover:underline">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="gradient-bg py-20 text-center px-4">
+    <h2 class="text-4xl font-bold text-blue-800 mb-4">Learn Rwanda Road Laws the Fun Way!</h2>
+    <p class="text-lg text-blue-700 mb-6">Pay once, learn forever. Access all lessons and quizzes after payment.</p>
+    <a href="#pricing" class="px-6 py-3 sunny-btn font-semibold rounded-lg transition">View Pricing</a>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="py-20 bg-white px-4">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-3xl font-bold text-blue-800 mb-10">Choose Your Plan</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="pricing-box p-6 rounded-lg shadow-sm text-center">
+          <h3 class="text-xl font-semibold text-blue-700 mb-2">Preview Access</h3>
+          <p class="text-3xl font-bold text-blue-600 mb-4">RWF 3,000</p>
+          <p class="text-gray-600 mb-4">Get limited access to basic topics and sample quizzes.</p>
+          <button onclick="selectPlan('Preview Access - RWF 3,000')" class="sunny-btn px-4 py-2 rounded-lg">Pay Now</button>
+        </div>
+        <div class="pricing-box p-6 rounded-lg shadow-sm text-center">
+          <h3 class="text-xl font-semibold text-blue-700 mb-2">Full Access</h3>
+          <p class="text-3xl font-bold text-blue-600 mb-4">RWF 5,000</p>
+          <p class="text-gray-600 mb-4">Access to all lessons, quizzes, and course materials.</p>
+          <button onclick="selectPlan('Full Access - RWF 5,000')" class="sunny-btn px-4 py-2 rounded-lg">Pay Now</button>
+        </div>
+        <div class="pricing-box p-6 rounded-lg shadow-sm text-center">
+          <h3 class="text-xl font-semibold text-blue-700 mb-2">Bonus Plan</h3>
+          <p class="text-3xl font-bold text-blue-600 mb-4">RWF 10,000</p>
+          <p class="text-gray-600 mb-4">Includes full access plus bonus driving tips & updates.</p>
+          <button onclick="selectPlan('Bonus Plan - RWF 10,000')" class="sunny-btn px-4 py-2 rounded-lg">Pay Now</button>
+        </div>
+        <div class="pricing-box p-6 rounded-lg shadow-sm text-center">
+          <h3 class="text-xl font-semibold text-blue-700 mb-2">Premium</h3>
+          <p class="text-3xl font-bold text-blue-600 mb-4">RWF 20,000</p>
+          <p class="text-gray-600 mb-4">Full access + 1-on-1 WhatsApp support and video calls.</p>
+          <button onclick="selectPlan('Premium - RWF 20,000')" class="sunny-btn px-4 py-2 rounded-lg">Pay Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Restricted: Courses -->
+  <div class="restricted">
+    <section id="courses" class="py-16 bg-blue-50 text-center px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-blue-800 mb-4">Courses</h2>
+        <p class="text-gray-700 mb-4">Here you'll find all lessons about Rwanda road laws, signs, penalties, and safe driving tips.</p>
+        <p class="text-sm text-blue-600">More content coming soon.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- Restricted: Account Settings -->
+  <div class="restricted">
+    <section id="account" class="py-20 bg-blue-50 px-4">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-3xl font-bold text-blue-800 mb-6">Your Account Settings</h2>
+        <p class="text-md text-gray-700 mb-8">This is where you will manage your account. In future versions, you will be able to:</p>
+        <ul class="text-left text-gray-800 space-y-2 max-w-md mx-auto">
+          <li>🔐 Change your password</li>
+          <li>🧾 View payment history</li>
+          <li>📜 See completed quizzes and scores</li>
+          <li>👤 Update your personal info</li>
+          <li>🚪 Log out or deactivate your account</li>
+        </ul>
+        <p class="mt-6 text-sm text-blue-700">These features are coming soon!</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- Contact Us Section -->
+  <section id="contact" class="py-20 bg-white px-4">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-bold text-blue-800 mb-6">Contact Us</h2>
+      <p class="text-gray-600 mb-6">Have questions or want to get your access code? We'll get back to you as soon as possible.</p>
+
+      <!-- ✅ Form -->
+      <form action="https://formspree.io/f/xoqgrqzn" method="POST" class="space-y-6 text-left">
+        <input type="hidden" name="selected_plan" id="selectedPlan" value="">
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Name</label>
+          <input type="text" name="name" required placeholder="Your beautiful name?" class="w-full mt-1 px-4 py-2 border border-blue-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Email</label>
+          <input type="email" name="email" required placeholder="your.email@example.com" class="w-full mt-1 px-4 py-2 border border-blue-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Message</label>
+          <textarea name="message" rows="4" required placeholder="How can we help you..." class="w-full mt-1 px-4 py-2 border border-blue-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+        </div>
+        <div>
+          <button type="submit" class="sunny-btn px-6 py-2 rounded-lg font-semibold">Send Message</button>
+        </div>
+      </form>
+
+      <div class="mt-10 text-sm text-gray-600 text-left">
+        <p><strong>Email:</strong> <a href="mailto:princetanga42@gmail.com" class="text-blue-600 underline">princetanga42@gmail.com</a></p>
+        <p><strong>Phone:</strong> (+250) 789-599-719</p>
+        <p><strong>Location:</strong> Kigali, Rwanda</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-blue-100 text-center py-6 text-sm text-gray-700">
+    <p>&copy; 2025 Ishuri ry'Amategeko y'Umuhanda. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript: Store plan and scroll to form -->
+  <script>
+    function selectPlan(planName) {
+      const input = document.getElementById("selectedPlan");
+      if (input) {
+        input.value = planName;
+      }
+      location.href = "#contact";
+    }
+  </script>
+</body>
+
+</html>

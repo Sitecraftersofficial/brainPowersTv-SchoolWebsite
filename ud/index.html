@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Road Law Learning - Rwanda</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: #fff;
+      color: #1E3A8A;
+    }
+
+    .gradient-bg {
+      background: linear-gradient(135deg, #E0F7FA 0%, #FFFFFF 100%);
+    }
+
+    .sunny-btn {
+      background-color: #3B82F6;
+      color: #fff;
+    }
+
+    .sunny-btn:hover {
+      background-color: #2563EB;
+    }
+
+    /* Smaller input in navbar */
+    #accessCodeInput {
+      max-width: 180px;
+      padding: 6px 8px;
+      border: 1px solid #60A5FA;
+      border-radius: 6px;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    #accessCodeInput:focus {
+      border-color: #2563EB;
+      box-shadow: 0 0 5px #2563EB;
+    }
+
+    #accessSubmit {
+      background-color: #3B82F6;
+      color: white;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-left: 8px;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+
+    #accessSubmit:hover {
+      background-color: #2563EB;
+    }
+
+    /* Message styling in navbar */
+    #accessMessage {
+      position: absolute;
+      top: 48px;
+      right: 0;
+      background: #DBEAFE;
+      /* light blue */
+      color: #1E40AF;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      min-width: 180px;
+      text-align: center;
+      z-index: 10;
+    }
+
+    /* Container for access input + message */
+    #accessContainer {
+      position: relative;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    // Your valid access codes
+    const validCodes = ["RWROAD2025", "STUDENT123", "PAPA456"];
+    const storedCode = localStorage.getItem("accessCode");
+  </script>
+
+  <!-- Navbar -->
+  <nav class="gradient-bg border-b border-blue-300 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center relative">
+      <h1 class="text-2xl font-bold text-blue-700">Ishuri ry'Amategeko y'Umuhanda</h1>
+
+      <ul class="hidden md:flex space-x-6 text-blue-800 font-medium">
+        <li><a href="#pricing" class="hover:underline">Pricing</a></li>
+        <li><a href="#courses" class="hover:underline">Courses</a></li>
+        <li><a href="#quiz" class="hover:underline">Quiz</a></li>
+        <li><a href="#account" class="hover:underline">Account</a></li>
+        <li><a href="#contact" class="hover:underline">Contact</a></li>
+      </ul>
+
+      <!-- Access Code Input and Button -->
+      <div id="accessContainer" class="hidden md:flex items-center ml-6">
+        <input
+          type="text"
+          id="accessCodeInput"
+          placeholder="Enter Access Code"
+          autocomplete="off"
+          aria-label="Enter access code"
+        />
+        <button id="accessSubmit" type="button">Submit</button>
+        <div id="accessMessage" style="display:none;"></div>
+      </div>
+    </div>
+  </nav>
+
+  <script>
+    const accessContainer = document.getElementById("accessContainer");
+    const accessInput = document.getElementById("accessCodeInput");
+    const accessSubmit = document.getElementById("accessSubmit");
+    const accessMessage = document.getElementById("accessMessage");
+
+    // Function to show/hide premium content
+    function togglePremiumContent(show) {
+      document.getElementById("premiumContent").style.display = show ? "block" : "none";
+    }
+
+    // On load, check stored code
+    if (storedCode && validCodes.includes(storedCode)) {
+      accessContainer.style.display = "none";
+      togglePremiumContent(true);
+    } else {
+      accessContainer.style.display = "flex";
+      togglePremiumContent(false);
+    }
+
+    accessSubmit.addEventListener("click", () => {
+      const code = accessInput.value.trim();
+      if (validCodes.includes(code)) {
+        localStorage.setItem("accessCode", code);
+        accessMessage.style.color = "green";
+        accessMessage.textContent = "Access granted! Enjoy the full site.";
+        accessMessage.style.display = "block";
+
+        // Show premium content and hide input
+        togglePremiumContent(true);
+        setTimeout(() => {
+          accessContainer.style.display = "none";
+          accessMessage.style.display = "none";
+          accessInput.value = "";
+        }, 2000);
+      } else {
+        accessMessage.style.color = "red";
+        accessMessage.textContent = "Invalid code. Please pay to get your personal code.";
+        accessMessage.style.display = "block";
+      }
+    });
+  </script>
+
+  <!-- Hero Section -->
+  <section class="gradient-bg py-20 text-center px-4">
+    <h2 class="text-4xl font-bold text-blue-800 mb-4">Learn Rwanda Road Laws the Fun Way!</h2>
+    <p class="text-lg text-blue-700 mb-6">Pay once, learn forever. Access all lessons and quizzes after payment.</p>
+    <a href="#pricing" class="px-6 py-3 sunny-btn font-semibold rounded-lg transition">View Pricing</a>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="py-16 px-4 max-w-5xl mx-auto">
+    <h2 class="text-3xl font-bold text-blue-800 mb-8 text-center">Pricing Plans</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="border border-blue-300 rounded-lg p-6 text-center shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-semibold mb-4 text-blue-700">Preview Access</h3>
+        <p class="text-blue-600 mb-6">RWF 3,000</p>
+        <p class="mb-6 text-blue-600">Get limited access to basic topics and sample quizzes.</p>
+        <button
+          onclick="alert('Payment processing coming soon for Preview Access');"
+          class="sunny-btn px-4 py-2 rounded font-semibold hover:bg-blue-600 transition"
+        >
+          Pay Now
+        </button>
+      </div>
+      <div class="border border-blue-300 rounded-lg p-6 text-center shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-semibold mb-4 text-blue-700">Standard Access</h3>
+        <p class="text-blue-600 mb-6">RWF 10,000</p>
+        <p class="mb-6 text-blue-600">Full access to all lessons and quizzes.</p>
+        <button
+          onclick="alert('Payment processing coming soon for Standard Access');"
+          class="sunny-btn px-4 py-2 rounded font-semibold hover:bg-blue-600 transition"
+        >
+          Pay Now
+        </button>
+      </div>
+      <div class="border border-blue-300 rounded-lg p-6 text-center shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-semibold mb-4 text-blue-700">Premium Access</h3>
+        <p class="text-blue-600 mb-6">RWF 20,000</p>
+        <p class="mb-6 text-blue-600">Includes extra coaching and certificates.</p>
+        <button
+          onclick="alert('Payment processing coming soon for Premium Access');"
+          class="sunny-btn px-4 py-2 rounded font-semibold hover:bg-blue-600 transition"
+        >
+          Pay Now
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Premium Content: Road Law Book + Quiz -->
+  <section id="premiumContent" style="display:none;" class="max-w-6xl mx-auto px-4 py-16">
+    <h2 class="text-3xl font-bold text-blue-800 mb-8 text-center">Road Law Book</h2>
+    <div class="prose max-w-none mb-16">
+      <h3>Chapter 1: Introduction to Rwanda Road Laws</h3>
+      <p>Welcome to the comprehensive guide to road laws in Rwanda. This section introduces fundamental traffic rules and regulations that every road user should know.</p>
+      <h3>Chapter 2: Traffic Signs and Signals</h3>
+      <p>Understand the meaning of different road signs and traffic signals to ensure safety and compliance on the road.</p>
+      <h3>Chapter 3: Rules of the Road</h3>
+      <p>Learn about speed limits, right of way, and other essential driving rules.</p>
+      <!-- Add more chapters or content as needed -->
+    </div>
+
+    <h2 class="text-3xl font-bold text-blue-800 mb-8 text-center">Quizzes</h2>
+    <div class="space-y-8 max-w-xl mx-auto">
+      <div class="border border-blue-300 p-6 rounded shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-semibold mb-4">Quiz 1: Basics of Road Laws</h3>
+        <p class="mb-4">Test your knowledge of basic road laws and signs.</p>
+        <button
+          onclick="alert('Quiz 1 coming soon!');"
+          class="sunny-btn px-4 py-2 rounded font-semibold hover:bg-blue-600 transition"
+        >
+          Take Quiz
+        </button>
+      </div>
+      <div class="border border-blue-300 p-6 rounded shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-semibold mb-4">Quiz 2: Traffic Signs</h3>
+        <p class="mb-4">Evaluate your understanding of traffic signs and signals.</p>
+        <button
+          onclick="alert('Quiz 2 coming soon!');"
+          class="sunny-btn px-4 py-2 rounded font-semibold hover:bg-blue-600 transition"
+        >
+          Take Quiz
+        </button>
+      </div>
+      <!-- Add more quizzes as you like -->
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 bg-blue-50 px-4 max-w-4xl mx-auto rounded-lg shadow-md">
+    <h2 class="text-3xl font-bold text-blue-800 mb-8 text-center">Contact Us</h2>
+    <p class="text-blue-700 mb-6 text-center">
+      Have questions or want to get your access code?<br />
+      Email: <a href="mailto:info@roadlaws.rw" class="underline">info@roadlaws.rw</a><br />
+      WhatsApp: +250 788 000 000
+    </p>
+    <form
+      action="mailto:princetanga42@gmail.com"
+      method="POST"
+      enctype="text/plain"
+      class="max-w-xl mx-auto space-y-6"
+    >
+      <div>
+        <label for="name" class="block font-semibold text-blue-700 mb-1">Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Your beautiful name?"
+          required
+          class="w-full border border-blue-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+      </div>
+      <div>
+        <label for="email" class="block font-semibold text-blue-700 mb-1">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="your.email@example.com"
+          required
+          class="w-full border border-blue-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+      </div>
+      <div>
+        <label for="message" class="block font-semibold text-blue-700 mb-1">Message</label>
+        <textarea
+          id="message"
+          name="message"
+          placeholder="How can we help you..."
+          rows="4"
+          required
+          class="w-full border border-blue-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        ></textarea>
+      </div>
+      <button
+        type="submit"
+        class="sunny-btn px-6 py-3 font-semibold rounded-lg w-full hover:bg-blue-600 transition"
+      >
+        Send Message
+      </button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-blue-800 text-white text-center py-6 mt-16">
+    <p>© 2025 Ishuri ry'Amategeko y'Umuhanda - All Rights Reserved</p>
+  </footer>
+</body>
+
+</html>
