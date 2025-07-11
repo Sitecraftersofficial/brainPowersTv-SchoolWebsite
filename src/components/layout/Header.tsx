@@ -4,8 +4,9 @@ import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { LanguageSelector } from '@/components/common/LanguageSelector';
-import { BookOpen, User, LogOut, Menu, X } from 'lucide-react';
+import { User, LogOut, Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import Logo from '../../assets/Logo.jpg'
 
 export const Header = () => {
   const { user, signOut } = useAuth();
@@ -34,10 +35,7 @@ export const Header = () => {
     <header className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border sticky top-0 z-50">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center space-x-2 text-primary font-bold text-xl">
-          <BookOpen className="h-8 w-8" />
-          <span className="hidden sm:block">{t('home.title')}</span>
-        </Link>
+        <img src={Logo} alt="Logo" className="h-[60px]" />
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6">

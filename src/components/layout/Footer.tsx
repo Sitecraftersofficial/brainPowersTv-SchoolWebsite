@@ -12,10 +12,10 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="col-span-1 lg:col-span-2">
-            <Link to="/" className="flex items-center space-x-2 text-primary font-bold text-xl mb-4">
+            <div className="flex items-center space-x-2 text-primary font-bold text-xl mb-4">
               <BookOpen className="h-8 w-8" />
               <span>{t('home.title')}</span>
-            </Link>
+            </div>
             <p className="text-muted-foreground mb-4 max-w-md">
               {t('home.description')}
             </p>
